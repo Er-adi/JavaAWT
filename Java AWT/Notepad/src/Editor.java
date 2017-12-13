@@ -18,10 +18,11 @@ import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.DataInputStream;
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -252,14 +253,14 @@ class Editor extends WindowAdapter implements ActionListener, MouseListener, Tex
 					if (fname == null) {
 					} else {
 						FileInputStream fis = new FileInputStream(dir + fname);
-						DataInputStream dis = new DataInputStream(fis);
+						BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 						String str = "", msg = "";
-						while ((str = dis.readLine()) != null) {
+						while ((str = br.readLine()) != null) {
 							msg = msg + str;
 							msg += "\n";
 						}
 						t.setText(msg);
-						dis.close();
+						br.close();
 						f.setTitle(fname);
 						hasBeenSaved = true;
 					}
@@ -291,14 +292,14 @@ class Editor extends WindowAdapter implements ActionListener, MouseListener, Tex
 					if (fname == null) {
 					} else {
 						FileInputStream fis = new FileInputStream(dir + fname);
-						DataInputStream dis = new DataInputStream(fis);
+						BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 						String str = "", msg = "";
-						while ((str = dis.readLine()) != null) {
+						while ((str = br.readLine()) != null) {
 							msg = msg + str;
 							msg += "\n";
 						}
 						t.setText(msg);
-						dis.close();
+						br.close();
 						f.setTitle(fname);
 						newflag = false;
 						askToSave = false;
@@ -363,14 +364,14 @@ class Editor extends WindowAdapter implements ActionListener, MouseListener, Tex
 						if (fname == null) {
 						} else {
 							FileInputStream fis = new FileInputStream(dir + fname);
-							DataInputStream dis = new DataInputStream(fis);
+							BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 							String str = "", msg = "";
-							while ((str = dis.readLine()) != null) {
+							while ((str = br.readLine()) != null) {
 								msg = msg + str;
 								msg += "\n";
 							}
 							t.setText(msg);
-							dis.close();
+							br.close();
 							f.setTitle(fname);
 						}
 					} catch (Exception e1) {
